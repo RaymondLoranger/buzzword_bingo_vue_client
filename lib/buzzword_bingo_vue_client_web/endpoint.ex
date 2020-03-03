@@ -8,7 +8,9 @@ defmodule Buzzword.Bingo.Vue.ClientWeb.Endpoint do
   # You should set gzip to true if you are running phoenix.digest
   # when deploying your static files in production.
   plug Plug.Static,
-    at: "/", from: :buzzword_bingo_vue_client, gzip: false,
+    at: "/",
+    from: :buzzword_bingo_vue_client,
+    gzip: false,
     only: ~w(css fonts images js favicon.ico robots.txt)
 
   # Code reloading can be explicitly enabled under the
@@ -19,6 +21,7 @@ defmodule Buzzword.Bingo.Vue.ClientWeb.Endpoint do
     plug Phoenix.CodeReloader
   end
 
+  plug Plug.RequestId
   plug Plug.Logger
 
   plug Plug.Parsers,
@@ -47,7 +50,10 @@ defmodule Buzzword.Bingo.Vue.ClientWeb.Endpoint do
   """
   def init(_key, config) do
     if config[:load_from_system_env] do
-      port = System.get_env("PORT") || raise "expected the PORT environment variable to be set"
+      port =
+        System.get_env("PORT") ||
+          raise "expected the PORT environment variable to be set"
+
       {:ok, Keyword.put(config, :http, [:inet6, port: port])}
     else
       {:ok, config}

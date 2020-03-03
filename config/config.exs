@@ -5,6 +5,9 @@
 # is restricted to this project.
 use Mix.Config
 
+# Mix messages in colors...
+config :elixir, ansi_enabled: true
+
 # General application configuration
 config :buzzword_bingo_vue_client,
   namespace: Buzzword.Bingo.Vue.Client
@@ -12,10 +15,13 @@ config :buzzword_bingo_vue_client,
 # Configures the endpoint
 config :buzzword_bingo_vue_client, Buzzword.Bingo.Vue.ClientWeb.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "jdPkMB9IZEOvXKQgK859WQUjcwefoU+bMkiFzhtG1/XsQ8A4ckfeHyIQoe8uhbbS",
-  render_errors: [view: Buzzword.Bingo.Vue.ClientWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: Buzzword.Bingo.Vue.Client.PubSub,
-           adapter: Phoenix.PubSub.PG2]
+  secret_key_base:
+    "jdPkMB9IZEOvXKQgK859WQUjcwefoU+bMkiFzhtG1/XsQ8A4ckfeHyIQoe8uhbbS",
+  render_errors: [
+    view: Buzzword.Bingo.Vue.ClientWeb.ErrorView,
+    accepts: ~w(html json)
+  ],
+  pubsub: [name: Buzzword.Bingo.Vue.Client.PubSub, adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger
 config :logger, :console,
@@ -24,4 +30,4 @@ config :logger, :console,
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
-import_config "#{Mix.env}.exs"
+import_config "#{Mix.env()}.exs"

@@ -88,15 +88,13 @@ export default {
         this.messages.push(message)
       })
 
-      this.channel
-        .join()
-        .receive("ok", response => {
-          this.setError(`Joined ${gameName} 😊`)
-          console.log(`Joined ${gameName} 😊`)
+      this.channel.join()
+        .receive('ok', response => {
+          console.log(`Joined ${gameName} 😊`, response)
         })
-        .receive("error", response => {
+        .receive('error', response => {
           this.setError(`Joining ${gameName} failed 🙁`)
-          console.log(this.error, response)
+          console.log(`Joining ${gameName} failed 🙁`, response)
         })
     },
     toPlayers(presences) {

@@ -1,19 +1,37 @@
-# Buzzword.Bingo.Vue.Client
+# Buzzword.Bingo.Vue.Client - Vue.js with Components and Vuex Version
 
-To start your Phoenix server:
+## Installation
 
-  * Install dependencies with `mix deps.get`
-  * Install Node.js dependencies with `cd assets && npm install`
-  * Start Phoenix endpoint with `mix phx.server`
+1. Install Elixir dependencies:
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+    ```sh
+    mix deps.get
+    ```
 
-Ready to run in production? Please [check our deployment guides](http://www.phoenixframework.org/docs/deployment).
+2. Install Node.js dependencies:
 
-## Learn more
+    ```sh
+    cd assets && npm install
+    ```
 
-  * Official website: http://www.phoenixframework.org/
-  * Guides: http://phoenixframework.org/docs/overview
-  * Docs: https://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix
+    You may see some warnings, but they can be safely ignored.
+
+3. Make sure the assets build:
+
+    ```sh
+    cd assets && node node_modules/.bin/brunch build
+    ```
+
+4. Make sure all the tests pass:
+
+    ```sh
+    mix test
+    ```
+
+5. Fire up the Phoenix endpoint:
+
+    ```sh
+    mix phx.server
+    ```
+
+6. Visit [`localhost:4000`](http://localhost:4000) to play the game!

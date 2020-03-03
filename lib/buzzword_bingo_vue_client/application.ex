@@ -12,6 +12,7 @@ defmodule Buzzword.Bingo.Vue.Client.Application do
       supervisor(Buzzword.Bingo.Vue.ClientWeb.Endpoint, []),
       # Start your own worker by calling: Buzzword.Bingo.Vue.Client.Worker.start_link(arg1, arg2, arg3)
       # worker(Buzzword.Bingo.Vue.Client.Worker, [arg1, arg2, arg3]),
+      supervisor(Buzzword.Bingo.Vue.ClientWeb.Presence, [])
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

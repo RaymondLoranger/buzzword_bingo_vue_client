@@ -23,12 +23,15 @@ defmodule Buzzword.Bingo.Vue.ClientWeb.ConnCase do
 
       # The default endpoint for testing
       @endpoint Buzzword.Bingo.Vue.ClientWeb.Endpoint
+
+      def put_player_in_session(conn, name, color \\ "blue") do
+        params = %{"name" => name, "color" => color}
+        post conn, session_path(conn, :create), %{"player" => params}
+      end
     end
   end
-
 
   setup _tags do
     {:ok, conn: Phoenix.ConnTest.build_conn()}
   end
-
 end

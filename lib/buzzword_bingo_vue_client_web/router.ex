@@ -14,13 +14,14 @@ defmodule Buzzword.Bingo.Vue.ClientWeb.Router do
   end
 
   scope "/", Buzzword.Bingo.Vue.ClientWeb do
-    pipe_through :browser # Use the default browser stack
+    pipe_through :browser
 
-    get "/", PageController, :index
+    get "/", GameController, :new
+
+    resources "/games", GameController, only: [:new, :create, :show]
+
+    resources "/sessions", SessionController,
+      only: [:new, :create, :delete],
+      singleton: true
   end
-
-  # Other scopes may use custom stacks.
-  # scope "/api", Buzzword.Bingo.Vue.ClientWeb do
-  #   pipe_through :api
-  # end
 end

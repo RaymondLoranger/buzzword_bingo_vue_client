@@ -28,8 +28,9 @@ defmodule Buzzword.Bingo.Vue.ClientWeb do
 
   def view do
     quote do
-      use Phoenix.View, root: "lib/buzzword_bingo_vue_client_web/templates",
-                        namespace: Buzzword.Bingo.Vue.ClientWeb
+      use Phoenix.View,
+        root: "lib/buzzword_bingo_vue_client_web/templates",
+        namespace: Buzzword.Bingo.Vue.ClientWeb
 
       # Import convenience functions from controllers
       import Phoenix.Controller, only: [get_flash: 2, view_module: 1]
