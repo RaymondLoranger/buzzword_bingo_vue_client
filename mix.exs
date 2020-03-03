@@ -34,22 +34,19 @@ defmodule Buzzword.Bingo.Vue.Client.Mixfile do
     [
       {:mix_tasks,
        github: "RaymondLoranger/mix_tasks", only: :dev, runtime: false},
-      {:phoenix, "~> 1.3.0"},
+      {:log_reset, "~> 0.1"},
+      {:buzzword_bingo_engine, path: "../buzzword_bingo_engine"},
+      {:phoenix, "~> 1.3.4"},
       {:phoenix_pubsub, "~> 1.0"},
       {:phoenix_html, "~> 2.10"},
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:gettext, "~> 0.11"},
       {:plug_cowboy, "~> 1.0"},
       # {:cowboy, "~> 1.0"},
+      {:logger_file_backend, "~> 0.0.9"},
       {:earmark, "~> 1.0", only: :dev},
       {:ex_doc, "~> 0.14", only: :dev, runtime: false},
-      {:dialyxir, "~> 0.5", only: :dev, runtime: false},
-      {:bingo, path: "../bingo"}
-
-      # {:bingo, "~> 1.0"}
-      # {:bingo, git: "https://github.com/username/bingo.git"}
-      # {:bingo, git: "git@github.com:username/bingo.git"}
-      # {:bingo, in_umbrella: true}
+      {:dialyxir, "~> 0.5", only: :dev, runtime: false}
     ]
   end
 end

@@ -8,3 +8,6 @@ config :buzzword_bingo_vue_client, Buzzword.Bingo.Vue.ClientWeb.Endpoint,
 
 # Print only warnings and errors during test
 config :logger, level: :warn
+
+config :log_reset, reset?: false
+config :file_only_logger, log?: false

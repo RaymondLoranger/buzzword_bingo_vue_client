@@ -15,7 +15,7 @@ defmodule Buzzword.Bingo.Vue.ClientWeb.SessionControllerTest do
 
       conn = post(conn, session_path(conn, :create), player: attrs)
 
-      expected_player = %Bingo.Player{name: "mike", color: "blue"}
+      expected_player = %Buzzword.Bingo.Player{name: "mike", color: "blue"}
 
       assert Plug.Conn.get_session(conn, :current_player) == expected_player
 

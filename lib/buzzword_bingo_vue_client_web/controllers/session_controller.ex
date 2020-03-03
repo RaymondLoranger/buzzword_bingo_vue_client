@@ -1,12 +1,14 @@
 defmodule Buzzword.Bingo.Vue.ClientWeb.SessionController do
   use Buzzword.Bingo.Vue.ClientWeb, :controller
 
+  alias Buzzword.Bingo.Player
+
   def new(conn, _) do
     render(conn, "new.html")
   end
 
   def create(conn, %{"player" => %{"name" => name, "color" => color}}) do
-    player = Bingo.Player.new(name, color)
+    player = Player.new(name, color)
 
     conn
     |> put_session(:current_player, player)
@@ -18,6 +20,8 @@ defmodule Buzzword.Bingo.Vue.ClientWeb.SessionController do
     |> delete_session(:current_player)
     |> redirect(to: "/")
   end
+
+  ## Private functions
 
   defp redirect_back_or_to_new_game(conn) do
     path = get_session(conn, :return_to) || game_path(conn, :new)

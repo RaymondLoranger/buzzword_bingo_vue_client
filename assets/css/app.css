@@ -66,11 +66,18 @@ nav ul.nav a {
 
 .letters .letter:hover {
   color: #fff;
-  background: rgb(41, 41, 41);
+  /* background: rgb(41, 41, 41); */
+  background: rgb(13, 114, 173);
 }
 
 .letters .letter.inverse {
   background: rgb(41, 41, 41);
+  color: #fff;
+}
+
+.letters .letter.inverse:hover {
+  /* background: rgb(41, 41, 41); */
+  background: rgb(127, 177, 206);
   color: #fff;
 }
 
@@ -97,6 +104,7 @@ input#player_name {
   width: 25px;
   float: left;
   margin-right: 5px;
+  border: 1px solid gray;
 }
 
 #color-selector .color:hover {
@@ -105,9 +113,10 @@ input#player_name {
 }
 
 #color-selector .color.selected:before {
-  content: "\2714";
+  /* content: "\2714"; */
+  content: "✔";
   color: #4c4a4a;
-  top: 3px;
+  top: 2px;
   position: relative;
 }
 
@@ -176,21 +185,20 @@ input#game-url {
 #squares .square {
   color: #3A4145;
   background: #fff;
-  border-radius: 12px;
+  /* border-radius: 12px; */
+  border-radius: 9px;
   margin: 4px;
-  flex: 1 0 auto;
-  position: relative;
-  word-wrap: break-word;
-  border-radius: 10px;
-  cursor: pointer;
-  text-align: center;
+  flex: 1 0 auto; /* flex: flex-grow flex-shrink flex-basis; */
+  /* word-wrap: break-word; */
+  /* cursor: pointer; */
+  /* text-align: center; */
   position: relative;
 }
 
 #squares .square:after {
   content: "";
   float: left;
-  display: block;
+  /* display: block; */
   padding-top: 100%;
 }
 
@@ -247,19 +255,6 @@ input#game-url {
   }
 }
 
-ul#messages {
-  min-height: 200px;
-  max-height: 200px;
-  overflow-y: scroll;
-  font-size: 0.8em;
-}
-
-@media (min-width: 650px) {
-  ul#messages {
-    min-height: 425px;
-    font-size: 1em;
-  }
-}
 
 #game-over {
   z-index: 11;
@@ -284,20 +279,23 @@ ul#messages {
 
    See: https://vuejs.org/v2/guide/transitions.html
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-
 .game-over-appear-enter-active, .game-over-appear-leave-active {
-  transition: all .5s
+  transition: all 2.5s
 }
 .game-over-appear-enter, .game-over-appear-leave-to {
   opacity: 0;
 }
 
-.player-appear-enter-active, .player-appear-leave-active {
-  transition: all .5s
+.player-appear-enter-active {
+  transition: all 2.5s
+}
+.player-appear-leave-active {
+  transition: all 1.0s
 }
 .player-appear-enter, .player-appear-leave-active {
   opacity: 0;
 }
+
 
 /* Alert
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -325,6 +323,10 @@ footer a:hover {
 .form-group {
   margin-top: 20px;
   margin-bottom: 20px;
+}
+
+.panel {
+  margin-top: 4px;
 }
 
 .panel-default > .panel-heading {

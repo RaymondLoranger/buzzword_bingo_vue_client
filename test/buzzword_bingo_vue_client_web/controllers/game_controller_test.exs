@@ -67,7 +67,7 @@ defmodule Buzzword.Bingo.Vue.ClientWeb.GameControllerTest do
   defp start_game do
     game_name = Buzzword.Bingo.Vue.Client.HaikuName.generate()
 
-    {:ok, _pid} = Bingo.GameSupervisor.start_game(game_name, 3)
+    {:ok, _pid} = Buzzword.Bingo.Engine.new_game(game_name, 3)
 
     game_name
   end

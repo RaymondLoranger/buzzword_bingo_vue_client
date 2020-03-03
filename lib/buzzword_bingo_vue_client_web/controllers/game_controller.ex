@@ -1,19 +1,22 @@
 defmodule Buzzword.Bingo.Vue.ClientWeb.GameController do
   use Buzzword.Bingo.Vue.ClientWeb, :controller
 
-  plug :require_player
+  alias Buzzword.Bingo.Engine
+  alias Buzzword.Bingo.Vue.Client.HaikuName
 
-  alias Bingo.{GameServer, GameSupervisor}
+  @salt Application.get_env(:buzzword_bingo_vue_client, :salt)
+
+  plug :require_player
 
   def new(conn, _) do
     render(conn, "new.html")
   end
 
   def create(conn, %{"game" => %{"size" => size}}) do
-    game_name = Buzzword.Bingo.Vue.Client.HaikuName.generate()
+    game_name = HaikuName.generate()
     size = String.to_integer(size)
 
-    case GameSupervisor.start_game(game_name, size) do
+    case Engine.new_game(game_name, size) do
       {:ok, _game_pid} ->
         redirect(conn, to: game_path(conn, :show, game_name))
 
@@ -25,7 +28,7 @@ defmodule Buzzword.Bingo.Vue.ClientWeb.GameController do
   end
 
   def show(conn, %{"id" => game_name}) do
-    case GameServer.game_pid(game_name) do
+    case Engine.game_pid(game_name) do
       pid when is_pid(pid) ->
         conn
         |> assign(:game_name, game_name)
@@ -38,6 +41,8 @@ defmodule Buzzword.Bingo.Vue.ClientWeb.GameController do
         |> redirect(to: game_path(conn, :new))
     end
   end
+
+  ## Private functions
 
   defp require_player(conn, _opts) do
     if get_session(conn, :current_player) do
@@ -52,6 +57,6 @@ defmodule Buzzword.Bingo.Vue.ClientWeb.GameController do
 
   defp generate_auth_token(conn) do
     current_player = get_session(conn, :current_player)
-    Phoenix.Token.sign(conn, "player auth", current_player)
+    Phoenix.Token.sign(conn, @salt, current_player)
   end
 end

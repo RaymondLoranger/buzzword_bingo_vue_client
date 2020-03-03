@@ -2,13 +2,13 @@ defmodule Buzzword.Bingo.Vue.ClientWeb.GameChannelTest do
   use Buzzword.Bingo.Vue.ClientWeb.ChannelCase
 
   alias Buzzword.Bingo.Vue.ClientWeb.GameChannel
-  alias Bingo.{GameServer, GameSupervisor, Player}
+  alias Buzzword.Bingo.{Engine, Player}
 
   setup do
     game_name = "test-game-123"
     topic = "games:#{game_name}"
 
-    GameSupervisor.start_game(game_name, 3)
+    Engine.new_game(game_name, 3)
 
     player = Player.new("nicole", "green")
 
@@ -34,7 +34,7 @@ defmodule Buzzword.Bingo.Vue.ClientWeb.GameChannelTest do
 
       assert_push("presence_state", %{})
 
-      summary = GameServer.summary(context.game_name)
+      summary = Engine.summary(context.game_name)
 
       assert_push("game_summary", ^summary)
     end
@@ -55,7 +55,7 @@ defmodule Buzzword.Bingo.Vue.ClientWeb.GameChannelTest do
       {:ok, _reply, socket} =
         subscribe_and_join(context.socket, GameChannel, context.topic, %{})
 
-      summary = GameServer.summary(context.game_name)
+      summary = Engine.summary(context.game_name)
 
       square_to_mark = square_at_position(summary.squares, 0, 0)
 
@@ -68,7 +68,7 @@ defmodule Buzzword.Bingo.Vue.ClientWeb.GameChannelTest do
       {:ok, _reply, socket} =
         subscribe_and_join(context.socket, GameChannel, context.topic, %{})
 
-      pid = GameServer.game_pid(context.game_name)
+      pid = Engine.game_pid(context.game_name)
 
       Process.exit(pid, :kill)
 

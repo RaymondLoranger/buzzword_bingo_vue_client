@@ -5,6 +5,8 @@ defmodule Buzzword.Bingo.Vue.ClientWeb.ErrorHelpers do
 
   use Phoenix.HTML
 
+  alias Buzzword.Bingo.Vue.ClientWeb.Gettext, as: ClientWebGettext
+
   @doc """
   Generates tag for inlined form input errors.
   """
@@ -36,21 +38,9 @@ defmodule Buzzword.Bingo.Vue.ClientWeb.ErrorHelpers do
     # should be written to the errors.po file. The :count option is
     # set by Ecto and indicates we should also apply plural rules.
     if count = opts[:count] do
-      Gettext.dngettext(
-        Buzzword.Bingo.Vue.ClientWeb.Gettext,
-        "errors",
-        msg,
-        msg,
-        count,
-        opts
-      )
+      Gettext.dngettext(ClientWebGettext, "errors", msg, msg, count, opts)
     else
-      Gettext.dgettext(
-        Buzzword.Bingo.Vue.ClientWeb.Gettext,
-        "errors",
-        msg,
-        opts
-      )
+      Gettext.dgettext(ClientWebGettext, "errors", msg, opts)
     end
   end
 end

@@ -45,10 +45,26 @@ ul#players .player-name {
   font-weight: bold;
 }
 ul#players .player-score  {
-  font-size: 1em;
+  font-size: 0.9em;
   font-weight: bold;
-  margin-right: 5px;
+  margin-right: 3px;
   vertical-align: middle;
   float: right;
+}
+ul#players .player-points {
+  display: none;
+}
+@media (max-width: 992px) {
+  ul#players .player-score {
+    display: none;
+  }
+  ul#players .player-points {
+  font-size: 0.9em;
+  font-weight: bold;
+  margin-right: 3px;
+  /* vertical-align: middle; */
+  float: right;
+  display: block;
+  }
 }
 </style>

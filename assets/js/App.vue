@@ -124,7 +124,10 @@ export default {
 
 <style scoped>
 #game-container {
-  margin-top: 30px;
+  /* margin-top: 30px; */
+  width: 80%;
+  margin: 20px auto;
+  display: block;
 }
 #game-container .col-xs-8 {
   padding-right: 0;

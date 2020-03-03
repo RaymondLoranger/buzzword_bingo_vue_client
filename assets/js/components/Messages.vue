@@ -33,6 +33,19 @@ export default {
 </script>
 
 <style scoped>
+ul#messages {
+  min-height: 200px;
+  max-height: 200px;
+  overflow-y: scroll;
+  font-size: 0.8em;
+}
+@media (min-width: 650px) {
+  ul#messages {
+    /* min-height: 425px; */
+    min-height: 300px;
+    font-size: 1em;
+  }
+}
 ul#messages .chat-message-name {
   font-weight: bold;
 }

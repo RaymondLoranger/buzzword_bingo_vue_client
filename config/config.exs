@@ -23,6 +23,8 @@ config :buzzword_bingo_vue_client, Buzzword.Bingo.Vue.ClientWeb.Endpoint,
   ],
   pubsub: [name: Buzzword.Bingo.Vue.Client.PubSub, adapter: Phoenix.PubSub.PG2]
 
+config :buzzword_bingo_vue_client, salt: "player auth"
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
@@ -30,4 +32,5 @@ config :logger, :console,
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
+import_config "config_*.exs"
 import_config "#{Mix.env()}.exs"

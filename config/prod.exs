@@ -62,3 +62,6 @@ config :logger, level: :info
 # Finally import the config/prod.secret.exs
 # which should be versioned separately.
 import_config "prod.secret.exs"
+
+config :log_reset, reset?: true
+config :file_only_logger, log?: true

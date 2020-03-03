@@ -9,7 +9,6 @@
     <title>Hello Buzzword Bingo Vue Client!</title>
     <link href="//fonts.googleapis.com/css?family=Raleway:300,400,600,800" rel="stylesheet" type="text/css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
 
@@ -57,22 +56,18 @@
 
       <footer>
         built with
-        <a href="http://elixir-lang.org/" target="_blank">
-          Elixir
-        </a> +
-        <a href="http://www.phoenixframework.org/" target="_blank">
-          Phoenix
-        </a> +
-        <a href="https://vuejs.org/" target="_blank">
-          Vue
-        </a>
+        <a href="http://elixir-lang.org/" target="_blank">Elixir</a> +
+        <a href="http://www.phoenixframework.org/" target="_blank">Phoenix</a> +
+        <a href="https://vuejs.org/" target="_blank">Vue</a>
         by
-        <a href="https://twitter.com/pragmaticstudio" target="_blank">
-           @pragmaticstudio
-        </a>
+        <a href="https://twitter.com/pragmaticstudio"
+           target="_blank">@pragmaticstudio</a>
       </footer>
 
     </div> <!-- /container -->
+    <script src=
+    "https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"
+    ></script>
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>
