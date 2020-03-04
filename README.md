@@ -1,4 +1,4 @@
-# Buzzword Bingo Vue Client - Version using Vue Components and Vuex
+# Buzzword Bingo Vue Client - Vue Components and Vuex Version
 
 Web interface for the _Multi-Player Bingo_ game
 featuring **_Vue Components_** and **_Vuex_**.
