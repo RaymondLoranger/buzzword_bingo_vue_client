@@ -1,16 +1,15 @@
 <template>
-  <form id="chat-form" v-on:submit.prevent="$emit('send-chat')">
+  <form id="chat-form" @submit.prevent="sendChat">
     <div class="input-group">
       <input id="chat-input"
               type="text"
               class="form-control"
-              v-bind:value="value"
-              v-on:input="$emit('input', $event.target.value)">
+              v-model="chatMessage">
       <span class="input-group-btn">
         <button id="chat-button"
                 class="btn btn-primary"
-                v-bind:disabled="!value"
-                v-on:click="$emit('send-chat')">
+                :disabled="!chatMessage"
+                @click="sendChat">
           <i class="fa fa-comment"></i>
         </button>
       </span>
@@ -19,10 +18,23 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'ChatForm',
-  props: {
-    value: String
+  data() {
+    return {
+      chatMessage: ''
+    }
+  },
+  computed: mapGetters(['getChannel']),
+  methods: {
+    sendChat(_event) {
+      if (this.chatMessage) {
+        this.getChannel.push('new_chat_message', { body: this.chatMessage })
+        this.chatMessage = ''
+      }
+    }
   }
 }
 </script>

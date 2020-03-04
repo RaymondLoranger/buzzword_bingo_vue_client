@@ -84,7 +84,7 @@ defmodule Buzzword.Bingo.Vue.ClientWeb.GameChannelTest do
         subscribe_and_join(context.socket, GameChannel, context.topic, %{})
 
       reply = %{
-        name: context.player.name,
+        sender: context.player.name,
         body: "Hello!"
       }
 

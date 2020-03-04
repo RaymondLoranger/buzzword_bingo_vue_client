@@ -7,8 +7,8 @@ const getters = {
 }
 
 const actions = {
-  setError({ commit }, payload) {
-    commit('setError', payload)
+  setError({ commit }, error) {
+    commit('setError', error)
   }
 }
 

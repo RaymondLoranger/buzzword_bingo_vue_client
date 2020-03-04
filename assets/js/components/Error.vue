@@ -1,7 +1,5 @@
 <template>
-  <p id="error" class="alert alert-danger">
-    {{ getError }}
-  </p>
+  <p id="error" class="alert alert-danger">{{ getError }}</p>
 </template>
 
 <script>

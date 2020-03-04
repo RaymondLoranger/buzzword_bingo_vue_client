@@ -4,10 +4,10 @@
     <div class="panel-body">
       <ul id="messages" ref="messages" class="list-group">
         <li class="list-group-item"
-            v-for="(message, index) in messages"
+            v-for="(message, index) in getMessages"
             :key="index">
-          <span class="chat-message-name">{{ message.name }}:</span>
-          <span class="chat-message-body">{{ message.body }}</span>
+          <span class="message-sender">{{ message.sender }}:</span>
+          <span class="message-body">{{ message.body }}</span>
         </li>
       </ul>
     </div>
@@ -15,13 +15,13 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'Messages',
-  props: {
-    messages: Array
-  },
+  computed: mapGetters(['getMessages']),
   watch: {
-    messages(newValue, oldValue) {
+    getMessages(_newValue, _oldValue) {
       this.$nextTick(() => {
         // DOM is now updated
         const messageList = this.$refs.messages
@@ -34,22 +34,32 @@ export default {
 
 <style scoped>
 ul#messages {
-  min-height: 200px;
-  max-height: 200px;
+  height: 128px;
   overflow-y: scroll;
   font-size: 0.8em;
 }
-@media (min-width: 650px) {
+@media (min-width: 650px) { /* styles for browsers larger than 650px */
   ul#messages {
-    /* min-height: 425px; */
-    min-height: 300px;
+    height: 182px;
     font-size: 1em;
   }
 }
-ul#messages .chat-message-name {
+@media (min-width: 990px) { /* styles for browsers larger than 990px */
+  ul#messages {
+    height: 298px;
+    font-size: 1em;
+  }
+}
+@media (min-width: 1200px) { /* styles for browsers larger than 1200px */
+  ul#messages {
+    height: 405px;
+    font-size: 1em;
+  }
+}
+ul#messages .message-sender {
   font-weight: bold;
 }
-ul#messages .chat-message-body {
+ul#messages .message-body {
   font-weight: 550;
 }
 </style>

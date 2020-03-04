@@ -3,25 +3,17 @@
     <div id="content">
       <Error/>
       <div class="row">
-        <div class="col-xs-8">
-          <Game :squares="squares" :winner="winner" @send-mark="sendMark"/>
-        </div>
-        <div class="col-xs-4">
-          <Players :players="players"/>
-          <Messages :messages="messages"/>
-          <ChatForm v-model="chatMessage" @send-chat="sendChat"/>
-        </div>
+        <Game class="col-xs-8"/>
+        <Info class="col-xs-4"/>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import Error    from './components/Error.vue'
-import Game     from './components/Game.vue'
-import Players  from './components/Players.vue'
-import Messages from './components/Messages.vue'
-import ChatForm from './components/ChatForm.vue'
+import Error from './components/Error.vue'
+import Game from './components/Game.vue'
+import Info from './components/Info.vue'
 import { Socket, Presence } from "phoenix"
 import { mapActions } from 'vuex'
 
@@ -30,93 +22,57 @@ export default {
   components: {
     Error,
     Game,
-    Players,
-    Messages,
-    ChatForm
-  },
-  data () {
-    return {
-      squares: [],
-      scores: {},
-      winner: null,
-      messages: [],
-      players: [],
-      chatMessage: ""
-    }
+    Info
   },
   methods: {
-    ...mapActions(['setError']),
-    sendMark(square) {
-      if (!square.marked_by) {
-        this.channel.push("mark_square", { phrase: square.phrase })
-      }
-    },
-    sendChat(event) {
-      if (this.chatMessage) {
-        this.channel.push("new_chat_message", { body: this.chatMessage })
-        this.chatMessage = ""
-      }
-    },
+    ...mapActions([
+      'setChannel', 'setError', 'setScores',
+      'setPlayers', 'setSquares', 'setWinner', 'pushMessage'
+    ]),
     joinChannel(authToken, gameName) {
-      const socket =
-        new Socket("/socket", { params: { token: authToken } })
+      const socket = new Socket('/socket', { params: { token: authToken } })
 
       socket.connect()
 
       this.channel = socket.channel(`games:${gameName}`, {})
 
-      this.channel.on("game_summary", summary => {
-        this.squares = summary.squares
-        this.scores = summary.scores
-        this.winner = summary.winner
-        this.players = this.toPlayers(this.presences)
+      this.channel.on('game_summary', summary => {
+        this.setSquares(summary.squares)
+        this.setScores(summary.scores)
+        this.setPlayers(this.presences)
+        this.setWinner(summary.winner)
       })
 
       this.presences = {}
 
       this.channel.on('presence_state', state => {
         this.presences = Presence.syncState(this.presences, state)
-        this.players = this.toPlayers(this.presences)
+        this.setPlayers(this.presences)
       })
 
       this.channel.on('presence_diff', diff => {
         this.presences = Presence.syncDiff(this.presences, diff)
-        this.players = this.toPlayers(this.presences)
+        this.setPlayers(this.presences)
       })
 
-      this.channel.on("new_chat_message", message => {
-        this.messages.push(message)
+      this.channel.on('new_chat_message', message => {
+        this.pushMessage(message)
       })
 
       this.channel.join()
         .receive('ok', response => {
+          this.setChannel(this.channel)
           console.log(`Joined ${gameName} 😊`, response)
         })
         .receive('error', response => {
           this.setError(`Joining ${gameName} failed 🙁`)
           console.log(`Joining ${gameName} failed 🙁`, response)
         })
-    },
-    toPlayers(presences) {
-      const listBy = (name, { metas: [first, ...rest] }) => {
-        const score = this.scores[name] || 0
-        return { name: name, color: first.color, score: score }
-      }
-
-      return Presence.list(presences, listBy)
     }
   },
-  created: function () {
-    // const gameContainer = this.$parent.$el
-    // console.log('this ===>', this)
-    // console.log('this.$parent ===>', this.$parent)
-    // console.log('this.$parent.$el ===>', this.$parent.$el)
-
+  created: function() {
     const joinChannelData = document.querySelector('#join-channel-data')
-    // console.log('joinChannelData ===>', joinChannelData)
-
     const { authToken, gameName } = joinChannelData.dataset
-
     this.joinChannel(authToken, gameName)
   }
 }
@@ -137,5 +93,36 @@ export default {
   overflow: hidden;
   position: relative;
   box-sizing: border-box;
+}
+</style>
+
+<style>
+#join-channel-data {
+  display: none;
+}
+.panel {
+  margin-top: 4px;
+}
+.panel-default > .panel-heading {
+  background: var(--purple);
+  color: white;
+}
+.panel .panel-body {
+  padding: 0;
+}
+.panel .list-group {
+  margin-bottom: 0em;
+}
+.panel .list-group .list-group-item {
+  border-width: 1px 0;
+}
+.panel .list-group-item:first-child {
+  border-top-width: 0;
+}
+.panel .list-group .list-group-item:last-child {
+  border-bottom: 0;
+}
+.panel .panel-heading + .list-group .list-group-item:first-child {
+  border-top-width: 0;
 }
 </style>

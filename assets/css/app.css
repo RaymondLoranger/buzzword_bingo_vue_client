@@ -23,13 +23,6 @@ body {
   margin-top: 25px;
 }
 
-/* Details
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
-
-#join-channel-data {
-  display: none;
-}
-
 /* Navigation
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
@@ -168,138 +161,15 @@ input#player_name {
 /* Game Page
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
+.new-game {
+  width: 80%;
+  margin: 20px auto;
+  display: block;
+}
+
 input#game-url {
   font-size: 90%;
 }
-
-#squares {
-  margin: 0 auto;
-  /* width: 95%; */
-}
-
-#squares .row {
-  margin: 0;
-  display: flex;
-}
-
-#squares .square {
-  color: #3A4145;
-  background: #fff;
-  /* border-radius: 12px; */
-  border-radius: 9px;
-  margin: 4px;
-  flex: 1 0 auto; /* flex: flex-grow flex-shrink flex-basis; */
-  /* word-wrap: break-word; */
-  /* cursor: pointer; */
-  /* text-align: center; */
-  position: relative;
-}
-
-#squares .square:after {
-  content: "";
-  float: left;
-  /* display: block; */
-  padding-top: 100%;
-}
-
-#squares .square:hover {
-  background: #F3F4D4;
-  cursor: pointer;
-}
-
-#squares .square .phrase {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  top: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  font-size: 0.8em;
-  font-weight: 600;
-  padding-right: 10px;
-  padding-left: 10px;
-}
-
-#squares .square .points {
-  position: absolute;
-  bottom: 5px;
-  right: 10px;
-  font-size: 0.7em;
-}
-
-#squares .square .name {
-  position: absolute;
-  bottom: 5px;
-  left: 10px;
-  font-size: 0.7em;
-}
-
-@media (min-width: 650px) {
-  #squares .square .phrase {
-    font-size: 1.1em;
-  }
-
-  #squares .square .points {
-    font-size: 0.8em;
-    bottom: 5px;
-    right: 15px;
-  }
-
-  #squares .square .name {
-    font-size: 0.8em;
-    bottom: 5px;
-    left: 15px;
-  }
-}
-
-
-#game-over {
-  z-index: 11;
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  top: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  font-weight: 600;
-  background: rgba(255, 255, 255, 0.85);
-  color: var(--orange);
-  text-transform: uppercase;
-  font-size: 5em;
-  font-weight: 600;
-}
-
-/* Vue Transitions
-
-   See: https://vuejs.org/v2/guide/transitions.html
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
-.game-over-appear-enter-active, .game-over-appear-leave-active {
-  transition: all 2.5s
-}
-.game-over-appear-enter, .game-over-appear-leave-to {
-  opacity: 0;
-}
-
-.player-appear-enter-active {
-  transition: all 2.5s
-}
-.player-appear-leave-active {
-  transition: all 1.0s
-}
-.player-appear-enter, .player-appear-leave-active {
-  opacity: 0;
-}
-
-
-/* Alert
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
-
 
 /* Footer
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -321,37 +191,9 @@ footer a:hover {
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 .form-group {
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-.panel {
-  margin-top: 4px;
-}
-
-.panel-default > .panel-heading {
-  background: var(--purple);
-  color: white;
-}
-
-.panel .panel-body {
-  padding: 0;
-}
-
-.panel .list-group {
-  margin-bottom: 0em;
-}
-.panel .list-group .list-group-item {
-  border-width: 1px 0;
-}
-.panel .list-group-item:first-child {
-  border-top-width: 0;
-}
-.panel .list-group .list-group-item:last-child {
-  border-bottom: 0;
-}
-.panel .panel-heading + .list-group .list-group-item:first-child {
-  border-top-width: 0;
+  /* margin-top: 20px;
+  margin-bottom: 20px; */
+  margin: 20px auto;
 }
 
 .btn-primary {

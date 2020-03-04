@@ -46,7 +46,7 @@ defmodule Buzzword.Bingo.Vue.ClientWeb.GameChannel do
 
   def handle_in("new_chat_message", %{"body" => body}, socket) do
     broadcast!(socket, "new_chat_message", %{
-      name: current_player(socket).name,
+      sender: current_player(socket).name,
       body: body
     })
 
