@@ -12,9 +12,11 @@ defmodule Buzzword.Bingo.Vue.Client.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: Buzzword.Bingo.Vue.Client.PubSub},
       # Start the Endpoint (http/https)
-      Buzzword.Bingo.Vue.ClientWeb.Endpoint
-      # Start a worker by calling: Buzzword.Bingo.Vue.Client.Worker.start_link(arg)
+      Buzzword.Bingo.Vue.ClientWeb.Endpoint,
+      # Start a worker by calling:
+      #   Buzzword.Bingo.Vue.Client.Worker.start_link(arg)
       # {Buzzword.Bingo.Vue.Client.Worker, arg}
+      Buzzword.Bingo.Vue.ClientWeb.Presence
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
