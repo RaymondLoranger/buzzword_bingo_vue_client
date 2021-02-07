@@ -5,13 +5,13 @@ defmodule Buzzword.Bingo.Vue.ClientWeb.GameChannel do
   alias Buzzword.Bingo.Vue.ClientWeb.Presence
 
   def join("games:" <> game_name, _params, socket) do
-    case Engine.game_pid(game_name) do
-      pid when is_pid(pid) ->
-        self() |> send({:after_join, game_name})
-        {:ok, socket}
-
-      nil ->
-        {:error, %{reason: "Game does not exist"}}
+    with true <- authorized?(socket),
+         pid when is_pid(pid) <- Engine.game_pid(game_name) do
+      self() |> send({:after_join, game_name})
+      {:ok, socket}
+    else
+      nil -> {:error, %{reason: "Game does not exist!"}}
+      false -> {:error, %{reason: "Name invalid!!"}}
     end
   end
 
@@ -60,5 +60,10 @@ defmodule Buzzword.Bingo.Vue.ClientWeb.GameChannel do
 
   defp current_player(socket) do
     socket.assigns.current_player
+  end
+
+  defp authorized?(socket) do
+    # See http://www.regular-expressions.info/unicode.html#prop
+    Regex.match?(~r/^\p{Lu}[\p{Ll}-\s]{1,12}$/, current_player(socket).name)
   end
 end

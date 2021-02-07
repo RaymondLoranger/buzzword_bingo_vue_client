@@ -35,9 +35,10 @@ body {
 
 nav ul.nav {
   margin-bottom: 1em;
-  a {
-    font-size: 90%;
-  }
+}
+
+nav ul.nav a {
+  font-size: 90%;
 }
 
 @media (min-width: 650px) {
@@ -167,234 +168,14 @@ input#player_name {
 /* Game Page
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
-#game-container {
-  /* margin-top: 30px; */
-  width: 80%;
-  margin: 20px auto;
-  display: block;
-}
-
 .new-game {
   width: 80%;
   margin: 20px auto;
   display: block;
 }
 
-#game-container .col-xs-8 {
-  padding-right: 0;
-}
-
-#content {
-  margin: 0;
-  overflow: hidden;
-  position: relative;
-  box-sizing: border-box;
-}
-
 input#game-url {
   font-size: 90%;
-}
-
-#squares {
-  margin: 0 auto;
-  // width: 95%;
-}
-
-#squares .row {
-  margin: 0;
-  display: flex;
-}
-
-#squares .square {
-  color: #3A4145;
-  background: #fff;
-  /* border-radius: 12px; */
-  border-radius: 9px;
-  margin: 4px;
-  flex: 1 0 auto; /* flex: flex-grow flex-shrink flex-basis; */
-  /* word-wrap: break-word; */
-  /* cursor: pointer; */
-  /* text-align: center; */
-  position: relative;
-}
-
-#squares .square:after {
-  content: "";
-  float: left;
-  /* display: block; */
-  padding-top: 100%;
-}
-
-#squares .square:hover {
-  background: #F3F4D4;
-  cursor: pointer;
-}
-
-#squares .square .phrase {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  top: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  font-size: 0.8em;
-  font-weight: 600;
-  padding-right: 10px;
-  padding-left: 10px;
-}
-
-#squares .square .points {
-  position: absolute;
-  bottom: 5px;
-  right: 10px;
-  font-size: 0.7em;
-}
-
-#squares .square .name {
-  position: absolute;
-  top: 5px;
-  left: 10px;
-  font-size: 0.7em;
-}
-
-@media (min-width: 650px) {
-  #squares .square .phrase {
-    font-size: 1.1em;
-  }
-
-  #squares .square .points {
-    font-size: 0.8em;
-    bottom: 5px;
-    right: 15px;
-  }
-
-  #squares .square .name {
-    font-size: 0.8em;
-    bottom: 5px;
-    left: 15px;
-  }
-}
-
-ul#players .player-name {
-  font-size: 0.9em;
-  font-weight: bold;
-}
-
-ul#players .player-color {
-  margin-top: 3px;
-  height: 15px;
-  width: 15px;
-  float: left;
-  margin-right: 10px;
-  border-radius: 25%;
-}
-
-ul#players .player-score  {
-  font-size: 0.9em;
-  font-weight: bold;
-  margin-right: 3px;
-  vertical-align: middle;
-  float: right;
-}
-
-ul#players .player-points {
-  display: none;
-}
-
-@media (max-width: 992px) {
-  ul#players .player-score {
-    display: none;
-  }
-
-  ul#players .player-points {
-  font-size: 1em;
-  font-weight: bold;
-  margin-right: 5px;
-  /* vertical-align: middle; */
-  float: right;
-  display: block;
-  }
-}
-
-ul#messages {
-  min-height: 200px;
-  max-height: 200px;
-  overflow-y: scroll;
-  font-size: 0.8em;
-}
-
-@media (min-width: 650px) {
-  ul#messages {
-    /* min-height: 425px; */
-    min-height: 300px;
-    font-size: 1em;
-  }
-}
-
-ul#messages .chat-message-name {
-  font-weight: bold;
-}
-
-ul#messages .chat-message-body {
-  font-weight: 550;
-}
-
-#game-over {
-  z-index: 11;
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  top: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  font-weight: 600;
-  background: rgba(255, 255, 255, 0.85);
-  color: var(--orange);
-  text-transform: uppercase;
-  font-size: 5em;
-  font-weight: 600;
-}
-
-/* Vue Transitions
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
-
-// See: https://vuejs.org/v2/guide/transitions.html
-
-.game-over-appear-enter-active, .game-over-appear-leave-active {
-  transition: all 2.5s
-}
-.game-over-appear-enter, .game-over-appear-leave-to {
-  opacity: 0;
-}
-
-.player-appear-enter-active {
-  transition: all 2.5s
-}
-.player-appear-leave-active {
-  transition: all 1.0s
-}
-.player-appear-enter, .player-appear-leave-active {
-  opacity: 0;
-}
-
-
-/* Alert
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
-
-.alert {
-  padding: 10px;
-  text-align: center;
-  border: none;
-  background: none;
-  font-size: 1.25em;
-  font-weight: 600;
-  text-transform: uppercase;
 }
 
 /* Footer
@@ -420,35 +201,6 @@ footer a:hover {
   /* margin-top: 20px;
   margin-bottom: 20px; */
   margin: 20px auto;
-}
-
-.panel {
-  margin-top: 4px;
-}
-
-.panel-default > .panel-heading {
-  background: var(--purple);
-  color: white;
-}
-
-.panel .panel-body {
-  padding: 0;
-}
-
-.panel .list-group {
-  margin-bottom: 0em;
-}
-.panel .list-group .list-group-item {
-  border-width: 1px 0;
-}
-.panel .list-group-item:first-child {
-  border-top-width: 0;
-}
-.panel .list-group .list-group-item:last-child {
-  border-bottom: 0;
-}
-.panel .panel-heading + .list-group .list-group-item:first-child {
-  border-top-width: 0;
 }
 
 .btn-primary {

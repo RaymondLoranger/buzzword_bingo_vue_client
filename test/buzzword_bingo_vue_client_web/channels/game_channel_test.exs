@@ -10,7 +10,7 @@ defmodule Buzzword.Bingo.Vue.ClientWeb.GameChannelTest do
     game_name = "test-game-123"
     topic = "games:#{game_name}"
     Engine.new_game(game_name, 3)
-    player = Player.new("nicole", "green")
+    player = Player.new("Nicole", "green")
     token = socket(UserSocket) |> Phoenix.Token.sign(@salt, player)
     {:ok, socket} = connect(UserSocket, %{"token" => token})
 
@@ -34,7 +34,7 @@ defmodule Buzzword.Bingo.Vue.ClientWeb.GameChannelTest do
     end
 
     test "returns error if game does not exist", context do
-      assert {:error, %{reason: "Game does not exist"}} =
+      assert {:error, %{reason: "Game does not exist!"}} =
                subscribe_and_join(
                  context.socket,
                  GameChannel,

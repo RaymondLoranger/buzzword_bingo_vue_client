@@ -1,4 +1,9 @@
-# Buzzword.Bingo.Vue.Client
+# Buzzword Bingo Vue Client
+
+Web interface for the _Multi-Player Bingo_ game
+featuring **_Vue Components_** and **_Vuex_**.
+
+##### Based on the course [Multi-Player Bingo](https://pragmaticstudio.com/courses/unpacked-bingo) by Mike and Nicole Clark.
 
 To start your Phoenix server:
 
