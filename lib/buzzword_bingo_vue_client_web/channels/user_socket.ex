@@ -1,8 +1,11 @@
 defmodule Buzzword.Bingo.Vue.ClientWeb.UserSocket do
   use Phoenix.Socket
 
+  @salt Application.get_env(:buzzword_bingo_vue_client, :salt)
+
   ## Channels
   # channel "room:*", Buzzword.Bingo.Vue.ClientWeb.RoomChannel
+  channel "games:*", Buzzword.Bingo.Vue.ClientWeb.GameChannel
 
   # Socket params are passed from the client and can
   # be used to verify and authenticate a user. After
@@ -15,10 +18,21 @@ defmodule Buzzword.Bingo.Vue.ClientWeb.UserSocket do
   #
   # See `Phoenix.Token` documentation for examples in
   # performing token verification on connect.
+
+  # Verify the token which should return the player, and then
+  # assign that player to the socket. This allows us to reference
+  # the player in the callback functions of the channel module.
+  #
+  # max_age: 86400 is equivalent to one day in seconds
   @impl true
-  def connect(_params, socket, _connect_info) do
-    {:ok, socket}
+  def connect %{"token" => token}, socket do
+    case Phoenix.Token.verify(socket, @salt, token, max_age: 86400) do
+      {:ok, player} -> {:ok, assign(socket, :current_player, player)}
+      {:error, _reason} -> :error
+    end
   end
+
+  def connect(_params, _socket), do: :error
 
   # Socket id's are topics that allow you to identify all sockets for a given user:
   #

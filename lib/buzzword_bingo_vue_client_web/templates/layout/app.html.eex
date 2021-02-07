@@ -19,26 +19,54 @@
     <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js">
     </script>
   </head>
+
   <body>
     <header>
-      <section class="container">
-        <nav role="navigation">
-          <ul>
-            <li><a href="https://hexdocs.pm/phoenix/overview.html">Get Started</a></li>
-            <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
-              <li><%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home) %></li>
-            <% end %>
-          </ul>
-        </nav>
-        <a href="https://phoenixframework.org/" class="phx-logo">
-          <img src="<%= Routes.static_path(@conn, "/images/phoenix.png") %>" alt="Phoenix Framework Logo"/>
-        </a>
-      </section>
+      <nav>
+        <ul class="nav nav-pills pull-right">
+          <li>
+            <%= link "Switch Player", to: Routes.session_path(@conn, :delete),
+                     method: :delete %>
+          </li>
+        </ul>
+      </nav>
+      <div class="row">
+        <div class="col-xs-12 text-center">
+          <div class="letters">
+            <span class="letter inverse">B</span>
+            <span class="letter">U</span>
+            <span class="letter">Z</span>
+            <span class="letter">Z</span>
+            <span class="letter">W</span>
+            <span class="letter">O</span>
+            <span class="letter">R</span>
+            <span class="letter">D</span>
+            <span class="letter inverse">B</span>
+            <span class="letter">I</span>
+            <span class="letter">N</span>
+            <span class="letter">G</span>
+            <span class="letter">O</span>
+          </div>
+        </div>
+      </div>
     </header>
+
     <main role="main" class="container">
-      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+      <p class="alert alert-info"
+         role="alert"><%= get_flash(@conn, :info) %></p>
+      <p class="alert alert-danger"
+         role="alert"><%= get_flash(@conn, :error) %></p>
       <%= @inner_content %>
     </main>
+
+    <footer>
+      built with
+      <a href="http://elixir-lang.org/" target="_blank">Elixir</a> +
+      <a href="http://www.phoenixframework.org/" target="_blank">Phoenix</a> +
+      <a href="https://vuejs.org/" target="_blank">Vue</a>
+      by
+      <a href="https://twitter.com/pragmaticstudio"
+          target="_blank">@pragmaticstudio</a>
+    </footer>
   </body>
 </html>
