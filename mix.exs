@@ -4,7 +4,7 @@ defmodule Buzzword.Bingo.Vue.Client.MixProject do
   def project do
     [
       app: :buzzword_bingo_vue_client,
-      version: "0.1.4",
+      version: "0.1.5",
       elixir: "~> 1.7",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
