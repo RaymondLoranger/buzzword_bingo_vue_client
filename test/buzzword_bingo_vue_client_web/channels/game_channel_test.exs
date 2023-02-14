@@ -4,7 +4,8 @@ defmodule Buzzword.Bingo.Vue.ClientWeb.GameChannelTest do
   alias Buzzword.Bingo.Vue.ClientWeb.{GameChannel, UserSocket}
   alias Buzzword.Bingo.{Engine, Player}
 
-  @salt Application.get_env(:buzzword_bingo_vue_client, :salt)
+  @salt :application.get_env(:buzzword_bingo_vue_client, :salt)
+  @salt elem(@salt, 1)
 
   setup do
     game_name = "test-game-123"

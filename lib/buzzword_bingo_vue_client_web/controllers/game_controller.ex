@@ -3,7 +3,8 @@ defmodule Buzzword.Bingo.Vue.ClientWeb.GameController do
 
   alias Buzzword.Bingo.Engine
 
-  @salt Application.get_env(:buzzword_bingo_vue_client, :salt)
+  @salt :application.get_env(:buzzword_bingo_vue_client, :salt)
+  @salt elem(@salt, 1)
 
   plug :require_player
 

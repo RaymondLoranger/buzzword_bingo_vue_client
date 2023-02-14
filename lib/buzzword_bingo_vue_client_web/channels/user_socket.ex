@@ -1,7 +1,8 @@
 defmodule Buzzword.Bingo.Vue.ClientWeb.UserSocket do
   use Phoenix.Socket
 
-  @salt Application.get_env(:buzzword_bingo_vue_client, :salt)
+  @salt :application.get_env(:buzzword_bingo_vue_client, :salt)
+  @salt elem(@salt, 1)
 
   ## Channels
   # channel "room:*", Buzzword.Bingo.Vue.ClientWeb.RoomChannel

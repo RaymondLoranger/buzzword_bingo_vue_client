@@ -5,7 +5,7 @@
 # is restricted to this project.
 
 # General application configuration
-use Mix.Config
+import Config
 
 config :buzzword_bingo_vue_client,
   namespace: Buzzword.Bingo.Vue.Client
